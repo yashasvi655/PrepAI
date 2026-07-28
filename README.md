@@ -29,5 +29,18 @@ AI-powered interview and exam preparation platform that helps users practice wit
 
 ### AI Integration
 - Google Gemini AI
+## Project Structure
 
+PrepAI
+│
+├── client        # React frontend
+│
+└── server        # Node.js backend
+
+## Future Enhancements
+
+- AI Resume Analyzer
+- AI Mock Interview
+- Voice-based Interview Practice
+- Personalized AI Feedback
 
