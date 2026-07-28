@@ -30,5 +30,4 @@ AI-powered interview and exam preparation platform that helps users practice wit
 ### AI Integration
 - Google Gemini AI
 
-## Project Structure
 
