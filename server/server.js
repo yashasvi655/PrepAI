@@ -7,6 +7,7 @@ import cors from "cors";
 import { generalLimiter } from "./middleware/rateLimiter.js";
 import attemptRoutes from "./routes/attemptRoutes.js";
 import pdfRoutes from "./routes/pdfRoutes.js";
+import resumeRoutes from "./routes/resumeRoutes.js";
 
 import dns from 'dns';
 dns.setServers(['8.8.8.8', '8.8.4.4']);
@@ -24,6 +25,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/questions", questionRoutes);
 app.use("/api/attempts", attemptRoutes);
 app.use("/api/pdf", pdfRoutes);
+app.use("/api/resume", resumeRoutes);
 
 app.get("/", (req, res) => {
     res.json({ success: true, message: "PrepAI Backend Running 🚀" });
