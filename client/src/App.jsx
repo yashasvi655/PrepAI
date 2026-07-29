@@ -10,6 +10,7 @@ import History from "./pages/History";
 import HistoryDetail from "./pages/HistoryDetail";
 import Leaderboard from "./pages/Leaderboard";
 import UploadPDF from "./pages/UploadPDF";
+import ResumeAnalyzer from "./pages/ResumeAnalyzer";
 
 function ProtectedRoute({ children }) {
   const { user } = useAuth();
@@ -83,6 +84,14 @@ function App() {
         element={
           <ProtectedRoute>
             <UploadPDF />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/resume-analyzer"
+        element={
+          <ProtectedRoute>
+            <ResumeAnalyzer />
           </ProtectedRoute>
         }
       />

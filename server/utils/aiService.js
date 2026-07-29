@@ -79,3 +79,92 @@ Return JSON in this format:
 
   return JSON.parse(cleaned);
 };
+
+export const analyzeResumeWithAI = async (resumeText) => {
+
+  let attempts = 3;
+
+  while (attempts > 0) {
+
+    try {
+
+      const limitedResume = resumeText.substring(0, 5000);
+
+      const prompt = `
+You are an expert ATS Resume Reviewer and Technical Interviewer.
+
+Analyze the following resume and return ONLY valid JSON.
+
+Resume:
+${limitedResume}
+
+Return JSON in exactly this format:
+
+{
+  "atsScore": 85,
+  "summary": "...",
+  "strengths": [
+    "...",
+    "..."
+  ],
+  "weaknesses": [
+    "...",
+    "..."
+  ],
+  "missingSkills": [
+    "...",
+    "..."
+  ],
+  "suggestions": [
+    "...",
+    "..."
+  ],
+  "interviewQuestions": [
+    "...",
+    "...",
+    "...",
+    "...",
+    "..."
+  ]
+}
+
+Do not return markdown.
+Do not return explanation.
+Return only valid JSON.
+`;
+
+      const result = await model.generateContent(prompt);
+
+      const text = result.response.text();
+
+      const cleaned = text.replace(/```json|```/g, "").trim();
+
+      return JSON.parse(cleaned);
+
+
+    } catch (error) {
+
+      console.log(
+        "Resume Analyzer Gemini Error:",
+        error.message
+      );
+
+      attempts--;
+
+      if (attempts === 0) {
+        throw error;
+      }
+
+
+      console.log(
+        "Retrying Gemini request..."
+      );
+
+
+      await new Promise(resolve =>
+        setTimeout(resolve, 3000)
+      );
+
+    }
+  }
+};
