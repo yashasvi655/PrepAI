@@ -22,7 +22,7 @@ function Dashboard() {
       try {
         const res = await api.get("/questions/analytics/me");
         setStats(res.data);
-      } catch (err) {}
+      } catch (err) { }
     };
 
     fetchStats();
@@ -120,6 +120,13 @@ function Dashboard() {
             >
               📄 Upload Notes
             </button>
+            <button
+              onClick={() => navigate("/resume-analyzer")}
+              className="hover:underline text-sm font-medium"
+              style={{ color: "var(--accent)" }}
+            >
+              📄 Resume Analyzer
+            </button>
 
 
             <button
@@ -153,7 +160,7 @@ function Dashboard() {
             <div className="card p-6 rounded-2xl shadow-md text-center">
 
               <p className="text-3xl font-bold"
-                style={{color:"var(--text-primary)"}}
+                style={{ color: "var(--text-primary)" }}
               >
                 {stats.totalAttempts}
               </p>
@@ -168,7 +175,7 @@ function Dashboard() {
             <div className="card p-6 rounded-2xl shadow-md text-center">
 
               <p className="text-3xl font-bold"
-                style={{color:"var(--text-primary)"}}
+                style={{ color: "var(--text-primary)" }}
               >
                 {stats.topicAccuracy.length}
               </p>
@@ -183,19 +190,19 @@ function Dashboard() {
             <div className="card p-6 rounded-2xl shadow-md text-center">
 
               <p className="text-3xl font-bold"
-                style={{color:"var(--text-primary)"}}
+                style={{ color: "var(--text-primary)" }}
               >
                 {
                   stats.topicAccuracy.length > 0
-                  ?
-                  Math.round(
-                    stats.topicAccuracy.reduce(
-                      (s,t)=>s+t.accuracy,0
-                    ) /
-                    stats.topicAccuracy.length
-                  )
-                  :
-                  0
+                    ?
+                    Math.round(
+                      stats.topicAccuracy.reduce(
+                        (s, t) => s + t.accuracy, 0
+                      ) /
+                      stats.topicAccuracy.length
+                    )
+                    :
+                    0
                 }%
 
               </p>
@@ -223,7 +230,7 @@ function Dashboard() {
 
             <h2
               className="text-2xl font-semibold"
-              style={{color:"var(--text-primary)"}}
+              style={{ color: "var(--text-primary)" }}
             >
               Start a New Quiz 🚀
             </h2>
@@ -231,7 +238,7 @@ function Dashboard() {
 
             <p
               className="text-sm mt-2"
-              style={{color:"var(--text-secondary)"}}
+              style={{ color: "var(--text-secondary)" }}
             >
               Generate personalized questions using AI
             </p>
@@ -260,7 +267,7 @@ function Dashboard() {
               type="text"
               placeholder="Topic (e.g. Java, React, DSA)"
               value={topic}
-              onChange={(e)=>setTopic(e.target.value)}
+              onChange={(e) => setTopic(e.target.value)}
               required
               className="input-field w-full rounded-xl p-4"
             />
@@ -271,7 +278,7 @@ function Dashboard() {
               type="text"
               placeholder="Exam target (e.g. Cognizant, TCS)"
               value={examTarget}
-              onChange={(e)=>setExamTarget(e.target.value)}
+              onChange={(e) => setExamTarget(e.target.value)}
               required
               className="input-field w-full rounded-xl p-4"
             />
@@ -283,7 +290,7 @@ function Dashboard() {
 
               <select
                 value={difficulty}
-                onChange={(e)=>setDifficulty(e.target.value)}
+                onChange={(e) => setDifficulty(e.target.value)}
                 className="input-field rounded-xl p-4"
               >
 
@@ -297,7 +304,7 @@ function Dashboard() {
 
               <select
                 value={count}
-                onChange={(e)=>setCount(Number(e.target.value))}
+                onChange={(e) => setCount(Number(e.target.value))}
                 className="input-field rounded-xl p-4"
               >
 
@@ -331,10 +338,10 @@ function Dashboard() {
 
               {
                 loading
-                ?
-                "Generating questions with AI..."
-                :
-                "Start Quiz"
+                  ?
+                  "Generating questions with AI..."
+                  :
+                  "Start Quiz"
               }
 
             </button>

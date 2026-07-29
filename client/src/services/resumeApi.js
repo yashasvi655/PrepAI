@@ -6,7 +6,7 @@ export const analyzeResume = async (file) => {
   formData.append("resume", file);
 
   const response = await api.post(
-    "/api/resume/analyze",
+    "/resume/analyze",
     formData,
     {
       headers: {
