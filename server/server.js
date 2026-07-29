@@ -9,9 +9,21 @@ import attemptRoutes from "./routes/attemptRoutes.js";
 import pdfRoutes from "./routes/pdfRoutes.js";
 import resumeRoutes from "./routes/resumeRoutes.js";
 
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
 import dns from 'dns';
 dns.setServers(['8.8.8.8', '8.8.4.4']);
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const uploadDir = path.join(__dirname, "uploads");
+
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir);
+}
 connectDB();
 
 const app = express();
