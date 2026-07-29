@@ -1,4 +1,4 @@
-import fs from "fs";
+
 import { PDFParse } from "pdf-parse";
 
 export const analyzeResume = async (req, res) => {
@@ -12,7 +12,7 @@ export const analyzeResume = async (req, res) => {
       });
     }
 
-    const dataBuffer = fs.readFileSync(req.file.path);
+    const dataBuffer = req.file.buffer;
 
     const parser = new PDFParse({
       data: dataBuffer
